@@ -278,6 +278,78 @@ div.alert p:last-child {
 }
 
 
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-ExtraLight.woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Thin.woff2');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Light.woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Regular.woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Medium.woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-SemiBold.woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Bold.woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-ExtraBold.woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Black.woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --bs-primary: rgb(10 10 10 / 100%);
     --bs-primary-rgb: 10, 10, 10;
@@ -339,6 +411,7 @@ div.alert p:last-child {
     --bs-link-hover-color-rgb: 107, 107, 107;
     --bs-border-color: rgb(224 224 224 / 100%);
     --bs-border-color-rgb: 224, 224, 224;
+    --bs-body-font-family: Pretendard;
     --syntax-highlight-theme: "xcode-light";
 }
 
@@ -837,6 +910,7 @@ code, pre {
     --bs-link-hover-color-rgb: 107, 107, 107;
     --bs-border-color: rgb(224 224 224 / 100%);
     --bs-border-color-rgb: 224, 224, 224;
+    --bs-body-font-family: Pretendard;
     --syntax-highlight-theme: "xcode-light";
 }
 
@@ -901,8 +975,17 @@ code, pre {
     --bs-link-hover-color-rgb: 204, 204, 204;
     --bs-border-color: rgb(51 51 51 / 100%);
     --bs-border-color-rgb: 51, 51, 51;
+    --bs-body-font-family: Pretendard;
     --syntax-highlight-theme: "xcode-dark";
 }
 
 
 
+.animation-sWfAv-hover {
+    transform-style: preserve-3d;
+    transition: transform 0.35s cubic-bezier(0.4, 1.0, 0.0, 1.0);
+}
+
+.animation-sWfAv-hover:hover {
+    transform: scale(1.1);
+}
