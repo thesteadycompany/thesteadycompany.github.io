@@ -65,35 +65,68 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:dnt" content="on" />
   </head>
-  <body class="py-5 container">
-    <div class="vstack gap-5">
-      <div class="mt-auto"></div>
-      <p class="text-center mb-0 align-self-center" style="font-weight: 700; font-family: 'Space Grotesk'; font-size: 2.0em">THE<br />STEADY<br />COMPANY</p>
-      <div class="mb-0 align-self-center vstack gap-3">
-        <div class="animation-sWfAv-hover mb-0 align-self-center" style="transform-style: preserve-3d">
-          <a href="/garden-page" class="link-plain d-inline-block">
-            <div class="fs-4 hstack gap-3">
-              <p class="text-primary mb-0 align-self-center">🪴 Garden</p>
-              <i class="img-fluid mb-0 align-self-center bi-arrow-right-circle-fill"></i>
-            </div></a>
+  <body class="container">
+    <div class="pb-5">
+      <header>
+        <nav class="fixed-top material-ultra-thin navbar navbar-expand-md">
+          <div class="container flex-wrap flex-lg-nowrap">
+            <div class="me-2 me-md-auto">
+              <a href="/" class="d-inline-flex align-items-center navbar-brand"><span style="font-weight: 700; font-family: 'Space Grotesk'; font-size: 1.0em">THE STEADY COMPANY</span></a>
+            </div>
+            <button type="button" class="navbar-toggler btn" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+              <ul class="navbar-nav mb-2 mb-md-0 col justify-content-end">
+                <li class="nav-item"><a href="/garden-page" class="nav-link text-nowrap">Garden</a></li>
+                <li class="nav-item"><a href="https://hogumachu.github.io" class="nav-link text-nowrap"><span>Personal Blog</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+    <div class="ig-main-content">
+      <div class="vstack gap-5">
+        <div style="height: 100px"></div>
+        <p class="text-center mb-0 align-self-center" style="font-weight: 700; font-family: 'Space Grotesk'; font-size: 2.0em">THE<br />STEADY<br />COMPANY</p>
+        <div style="height: 100px"></div>
+        <div class="mb-0 align-self-center row justify-content-center">
+          <div class="col align-self-center g-3">
+            <div class="animation-sWfAv-hover" style="transform-style: preserve-3d">
+              <a href="/garden-page" class="link-plain d-inline-block">
+                <div class="py-4 px-5 vstack gap-3" style="background-color: rgb(128 128 128 / 5%); border-radius: 16px">
+                  <h1 class="text-primary mb-0 align-self-center">🪴</h1>
+                  <i class="img-fluid fs-4 mb-0 align-self-center bi-arrow-right-circle-fill"></i>
+                </div></a>
+            </div>
+          </div>
+          <div class="col align-self-center g-3">
+            <div class="animation-sWfAv-hover" style="transform-style: preserve-3d">
+              <a href="https://hogumachu.github.io" class="link-plain d-inline-block">
+                <div class="py-4 px-5 vstack gap-3" style="background-color: rgb(128 128 128 / 5%); border-radius: 16px">
+                  <h1 class="text-primary mb-0 align-self-center">📰</h1>
+                  <i class="img-fluid fs-4 mb-0 align-self-center bi-arrow-right-circle-fill"></i>
+                </div></a>
+            </div>
+          </div>
         </div>
-        <div class="animation-sWfAv-hover mb-0 align-self-center" style="transform-style: preserve-3d">
-          <a href="https://github.com/thesteadycompany" class="link-plain d-inline-block">
-            <div class="fs-4 hstack gap-3">
-              <p class="text-primary mb-0 align-self-center">📰 Personal Blog</p>
-              <i class="img-fluid mb-0 align-self-center bi-arrow-right-circle-fill"></i>
-            </div></a>
-        </div>
+        <div class="mt-auto"></div>
+      </div>
+    </div>
+    <div class="mt-5 fs-3 vstack gap-3">
+      <div class="mb-0 align-self-center hstack gap-3">
+        <a target="_blank" rel="noreferrer" href="https://github.com/thesteadycompany" class="mb-0 align-self-center link-secondary"><i class="bi-github"></i></a>
+        <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/hogumachu/" class="mb-0 align-self-center link-secondary"><i class="bi-linkedin"></i></a>
       </div>
       <div class="mb-0 align-self-center">
-        <div class="mt-5 fs-3 vstack">
-          <div class="mb-0 align-self-center hstack gap-3">
-            <a target="_blank" rel="noreferrer" href="https://github.com/thesteadycompany" class="mb-0 align-self-center link-secondary"><i class="bi-github"></i></a>
-            <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/hogumachu/" class="mb-0 align-self-center link-secondary"><i class="bi-linkedin"></i></a>
+        <div class="animation-sWfAv-hover" style="transform-style: preserve-3d">
+          <div class="hstack gap-1">
+            <div role="group" class="btn-group" aria-label="Theme Switch Buttons">
+              <button type="button" class="btn" onclick="igniteSwitchTheme('light');"><i class="bi-sun-fill" style="color: rgb(255 255 255 / 70%)"></i></button>
+              <button type="button" class="btn" onclick="igniteSwitchTheme('dark');"><i class="bi-moon-fill" style="color: rgb(0 0 0 / 70%)"></i></button>
+            </div>
           </div>
         </div>
       </div>
-      <div class="mt-auto"></div>
     </div>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/syntax-highlighting.js"></script>
