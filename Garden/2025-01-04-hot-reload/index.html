@@ -3,16 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="앱 개발을 진행하면서 변경사항이 있을 때 재빌드 하는 것은 꽤 비효율적이다. Flutter 개발을 할 때는 핫 리로드 기능이 빌트인 되어있어 빠르게 개발이 가능했다. iOS 개발을 할 때는 모듈을 쪼개고, 데모앱을 만들어 빌드 속도를 낮추는 방법으로 해결해왔다." />
     <meta name="author" content="Hogumachu" />
     <meta name="generator" content="Ignite v0.6.0" />
-    <title>Garden – The Steady Company</title>
+    <title>생산성 올리는 방법 (Hot Reload) – The Steady Company</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/css/prism-xcode-dark.css" rel="stylesheet" data-highlight-theme="xcode-dark" />
     <link href="/css/prism-xcode-light.css" rel="stylesheet" data-highlight-theme="xcode-light" />
     <link href="/css/prism-plugins.css" rel="stylesheet" />
     <link href="/css/bootstrap-icons.min.css" rel="stylesheet" />
     <link href="/css/ignite-core.min.css" rel="stylesheet" />
-    <link href="https://thesteadycompany.github.io/garden-page" rel="canonical" />
+    <link href="https://thesteadycompany.github.io/Garden/2025-01-04-hot-reload" rel="canonical" />
     <script>(function() {
     function getThemePreference() {
         return localStorage.getItem('custom-theme') || 'auto';
@@ -58,9 +59,11 @@
 })();
 </script>
     <meta property="og:site_name" content="Docs" />
-    <meta property="og:title" content="Garden" />
-    <meta name="twitter:title" content="Garden" />
-    <meta property="og:url" content="https://thesteadycompany.github.io/garden-page" />
+    <meta property="og:title" content="생산성 올리는 방법 (Hot Reload)" />
+    <meta name="twitter:title" content="생산성 올리는 방법 (Hot Reload)" />
+    <meta property="og:description" content="앱 개발을 진행하면서 변경사항이 있을 때 재빌드 하는 것은 꽤 비효율적이다. Flutter 개발을 할 때는 핫 리로드 기능이 빌트인 되어있어 빠르게 개발이 가능했다. iOS 개발을 할 때는 모듈을 쪼개고, 데모앱을 만들어 빌드 속도를 낮추는 방법으로 해결해왔다." />
+    <meta name="twitter:description" content="앱 개발을 진행하면서 변경사항이 있을 때 재빌드 하는 것은 꽤 비효율적이다. Flutter 개발을 할 때는 핫 리로드 기능이 빌트인 되어있어 빠르게 개발이 가능했다. iOS 개발을 할 때는 모듈을 쪼개고, 데모앱을 만들어 빌드 속도를 낮추는 방법으로 해결해왔다." />
+    <meta property="og:url" content="https://thesteadycompany.github.io/Garden/2025-01-04-hot-reload" />
     <meta name="twitter:domain" content="thesteadycompany.github.io" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:dnt" content="on" />
@@ -76,7 +79,7 @@
             <button type="button" class="navbar-toggler btn" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div id="navbarCollapse" class="collapse navbar-collapse">
               <ul class="navbar-nav mb-2 mb-md-0 col justify-content-end">
-                <li class="nav-item"><a href="/garden-page" class="nav-link active text-nowrap" aria-current="page">Garden</a></li>
+                <li class="nav-item"><a href="/garden-page" class="nav-link text-nowrap">Garden</a></li>
                 <li class="nav-item"><a href="https://hogumachu.github.io" class="nav-link text-nowrap"><span>Personal Blog</span></a></li>
               </ul>
             </div>
@@ -85,28 +88,36 @@
       </header>
     </div>
     <div class="ig-main-content">
-      <div class="pt-5">
-        <div class="text-center vstack gap-3">
-          <p class="text-primary mb-0 align-self-center" style="font-weight: 700; font-family: 'Space Grotesk'; font-size: 1.5em">🪴 Garden</p>
-          <p class="ig-text-small text-body-secondary pb-5 mb-0 align-self-center">정재하지 않은, 짧은 글을 씁니다.</p>
-        </div>
-      </div>
-      <div class="row justify-content-center row-cols-1 row-cols-md-2">
-        <div class="col align-self-center g-3">
-          <a href="/Garden/2025-01-04-hot-reload" class="link-plain d-inline-block" style="width: 100%; max-width: 100.0%">
-            <div class="animation-sWfAv-hover" style="background-color: rgb(128 128 128 / 3%); transform-style: preserve-3d; border-radius: 16px">
-              <div class="p-3 vstack">
-                <h5 class="text-start text-primary mb-0 align-self-start">생산성 올리는 방법 (Hot Reload)</h5>
-                <p class="text-start text-body-secondary pt-2 mb-0 align-self-start">Inject를 이용하여 생산성 올리기</p>
-                <p class="text-start ig-text-xSmall text-body-tertiary pt-1 mb-0 align-self-start">2025-01-04</p>
-                <div class="pt-2 mb-0 align-self-start hstack gap-1">
-                  <span class="mb-0 align-self-center badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill" style="font-weight: 400">iOS</span>
-                  <span class="mb-0 align-self-center badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill" style="font-weight: 400">Hot Reload</span>
-                </div>
-              </div>
-            </div></a>
-        </div>
-      </div>
+      <h1 class="text-center text-primary pt-5">생산성 올리는 방법 (Hot Reload)</h1>
+      <p class="text-center text-body-secondary pb-5">Inject를 이용하여 생산성 올리기</p>
+      <p class="m-3 p-3"></p>
+      <p>앱 개발을 진행하면서 변경사항이 있을 때 재빌드 하는 것은 꽤 비효율적이다.<br /> Flutter 개발을 할 때는 핫 리로드 기능이 빌트인 되어있어 빠르게 개발이 가능했다.<br /> iOS 개발을 할 때는 모듈을 쪼개고, 데모앱을 만들어 빌드 속도를 낮추는 방법으로 해결해왔다.</p>
+      <hr />
+      <h2>Hot Reload를 위해 생산성 올리기</h2>
+      <p><a href="https://github.com/krzysztofzablocki/Inject">Inject</a>를 통해 iOS도 핫 리로드가 가능하다.<br /> 빌트인이 아니라 초기 설정이 조금 필요하지만 크게 어렵진 않다.</p>
+      <p>또한 <a href="https://github.com/playbook-ui/playbook-ios">Playbook</a>이라는 라이브러리도 존재하는데 시나리오를 등록하여 각 UI를 볼 수 있다.</p>
+      <pre><code class="language-swift">/// Playbook 예시 코드
+/// 출처: https://github.com/playbook-ui/playbook-ios
+Playbook.default.addScenarios(of: "Home") {
+    Scenario("CategoryHome", layout: .fill) {
+        CategoryHome().environmentObject(UserData.stub)
+    }
+
+    Scenario("LandmarkList", layout: .fill) {
+        NavigationView {
+            LandmarkList().environmentObject(UserData.stub)
+        }
+    }
+
+    Scenario("UIView red", layout: .fixed(length: 100)) {
+        let view = UIView()
+        view.backgroundColor = .red
+        return view
+    }
+}
+</code></pre>
+      <p>Playbook으로 시나리오를 등록하고, Inject로 Hot Reload를 하면 더욱 빠르게 개발이 가능하다.</p>
+      <p></p>
     </div>
     <div class="mt-5 fs-3 vstack gap-3">
       <div class="mb-0 align-self-center hstack gap-3">

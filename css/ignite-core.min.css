@@ -989,3 +989,12 @@ code, pre {
 .animation-sWfAv-hover:hover {
     transform: scale(1.1);
 }
+
+.animation-sWfAv-hover {
+    transform-style: preserve-3d;
+    transition: transform 0.35s cubic-bezier(0.4, 1.0, 0.0, 1.0);
+}
+
+.animation-sWfAv-hover:hover {
+    transform: scale(1.01);
+}
