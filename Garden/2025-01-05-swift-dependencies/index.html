@@ -3,16 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="TCA를 주력으로 사용하다보니 swift-dependencies로 의존성 관리를 하고 있다." />
     <meta name="author" content="Hogumachu" />
     <meta name="generator" content="Ignite v0.6.0" />
-    <title>Garden – The Steady Company</title>
+    <title>Swift Dependencies 잘 활용하기 – The Steady Company</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/css/prism-xcode-dark.css" rel="stylesheet" data-highlight-theme="xcode-dark" />
     <link href="/css/prism-xcode-light.css" rel="stylesheet" data-highlight-theme="xcode-light" />
     <link href="/css/prism-plugins.css" rel="stylesheet" />
     <link href="/css/bootstrap-icons.min.css" rel="stylesheet" />
     <link href="/css/ignite-core.min.css" rel="stylesheet" />
-    <link href="https://thesteadycompany.github.io/garden-page" rel="canonical" />
+    <link href="https://thesteadycompany.github.io/Garden/2025-01-05-swift-dependencies" rel="canonical" />
     <script>(function() {
     function getThemePreference() {
         return localStorage.getItem('custom-theme') || 'auto';
@@ -58,9 +59,11 @@
 })();
 </script>
     <meta property="og:site_name" content="Docs" />
-    <meta property="og:title" content="Garden" />
-    <meta name="twitter:title" content="Garden" />
-    <meta property="og:url" content="https://thesteadycompany.github.io/garden-page" />
+    <meta property="og:title" content="Swift Dependencies 잘 활용하기" />
+    <meta name="twitter:title" content="Swift Dependencies 잘 활용하기" />
+    <meta property="og:description" content="TCA를 주력으로 사용하다보니 swift-dependencies로 의존성 관리를 하고 있다." />
+    <meta name="twitter:description" content="TCA를 주력으로 사용하다보니 swift-dependencies로 의존성 관리를 하고 있다." />
+    <meta property="og:url" content="https://thesteadycompany.github.io/Garden/2025-01-05-swift-dependencies" />
     <meta name="twitter:domain" content="thesteadycompany.github.io" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:dnt" content="on" />
@@ -76,7 +79,7 @@
             <button type="button" class="navbar-toggler btn" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div id="navbarCollapse" class="collapse navbar-collapse">
               <ul class="navbar-nav mb-2 mb-md-0 col justify-content-end">
-                <li class="nav-item"><a href="/garden-page" class="nav-link active text-nowrap" aria-current="page">Garden</a></li>
+                <li class="nav-item"><a href="/garden-page" class="nav-link text-nowrap">Garden</a></li>
                 <li class="nav-item"><a href="https://hogumachu.github.io" class="nav-link text-nowrap"><span>Personal Blog</span></a></li>
               </ul>
             </div>
@@ -85,42 +88,46 @@
       </header>
     </div>
     <div class="ig-main-content">
-      <div class="pt-5">
-        <div class="text-center vstack gap-3">
-          <p class="text-primary mb-0 align-self-center" style="font-weight: 700; font-family: 'Space Grotesk'; font-size: 1.5em">🪴 Garden</p>
-          <p class="ig-text-small text-body-secondary pb-5 mb-0 align-self-center">정재하지 않은, 짧은 글을 씁니다.</p>
-        </div>
-      </div>
-      <div class="row justify-content-center row-cols-1 row-cols-md-2">
-        <div class="col align-self-center g-3">
-          <a href="/Garden/2025-01-05-swift-dependencies" class="link-plain d-inline-block" style="width: 100%; max-width: 100.0%">
-            <div class="animation-sWfAv-hover" style="background-color: rgb(128 128 128 / 3%); transform-style: preserve-3d; border-radius: 16px">
-              <div class="p-3 vstack">
-                <h5 class="text-start text-primary mb-0 align-self-start">Swift Dependencies 잘 활용하기</h5>
-                <p class="text-start text-body-secondary pt-2 mb-0 align-self-start">추상화를 통해 빌드 시간 절약하기</p>
-                <p class="text-start ig-text-xSmall text-body-tertiary pt-1 mb-0 align-self-start">2025-01-05</p>
-                <div class="pt-2 mb-0 align-self-start hstack gap-1">
-                  <span class="mb-0 align-self-center badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill" style="font-weight: 400">iOS</span>
-                  <span class="mb-0 align-self-center badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill" style="font-weight: 400">Dependency Injection</span>
-                </div>
-              </div>
-            </div></a>
-        </div>
-        <div class="col align-self-center g-3">
-          <a href="/Garden/2025-01-04-hot-reload" class="link-plain d-inline-block" style="width: 100%; max-width: 100.0%">
-            <div class="animation-sWfAv-hover" style="background-color: rgb(128 128 128 / 3%); transform-style: preserve-3d; border-radius: 16px">
-              <div class="p-3 vstack">
-                <h5 class="text-start text-primary mb-0 align-self-start">생산성 올리는 방법 (Hot Reload)</h5>
-                <p class="text-start text-body-secondary pt-2 mb-0 align-self-start">Inject를 이용하여 생산성 올리기</p>
-                <p class="text-start ig-text-xSmall text-body-tertiary pt-1 mb-0 align-self-start">2025-01-04</p>
-                <div class="pt-2 mb-0 align-self-start hstack gap-1">
-                  <span class="mb-0 align-self-center badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill" style="font-weight: 400">iOS</span>
-                  <span class="mb-0 align-self-center badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill" style="font-weight: 400">Hot Reload</span>
-                </div>
-              </div>
-            </div></a>
-        </div>
-      </div>
+      <h1 class="text-center text-primary pt-5">Swift Dependencies 잘 활용하기</h1>
+      <p class="text-center text-body-secondary pb-5">추상화를 통해 빌드 시간 절약하기</p>
+      <p class="m-3 p-3"></p>
+      <p>TCA를 주력으로 사용하다보니 <a href="https://github.com/pointfreeco/">swift-dependencies</a>로 의존성 관리를 하고 있다.</p>
+      <p>프로토콜 방식과 다르게 구조체+클로저를 통해 의존성을 다루고 있다.</p>
+      <pre><code class="language-swift">/// 구조체+클로저
+@DependencyClient
+struct Manager {
+  var execute: @Sendable () async throws -&gt; Void
+}
+
+protocol Provider {
+  func execute() async throws -&gt; Void
+}
+
+final class DefaultProvider: Provider {}
+</code></pre>
+      <h2>Swift Dependencies를 활용한 의존성 역전</h2>
+      <p><a href="https://github.com/pointfreeco/">swift-dependencies</a>는 이러한 의존성이 추상화 되지 않는 줄 알았는데 너무 잘 되고 있었다.</p>
+      <pre><code class="language-swift">/// AuthClient 모듈
+@DependencyClient
+public struct AuthClient {
+  public var auth: @Sendable () async throws -&gt; Void
+}
+
+extension AuthClient: TestDependencyKey {
+  public static let testValue = Self()
+}
+
+/// AuthClientLive 모듈
+extension AuthClient: DependencyKey {
+  public static let liveValue = AuthClient(
+    auth: { /* 구현 */ }
+  )
+}
+</code></pre>
+      <p>위와 같은 방식으로 모듈을 분리하고 그냥 사용하는 곳에서 구현체에 대한 모듈을 import하면 된다.</p>
+      <p>이를 통해 사이즈가 큰 외부 라이브러리(e.g. Firebase)를 인터페이스 모듈로 분리하여 활용하고 있다.</p>
+      <p><a href="https://github.com/pointfreeco/isowords/tree/main/Sources/ApiClient">링크</a>를 참조하면 좋다.</p>
+      <p></p>
     </div>
     <div class="mt-5 fs-3 vstack gap-3">
       <div class="mb-0 align-self-center hstack gap-3">
