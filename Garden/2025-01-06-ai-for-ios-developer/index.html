@@ -3,16 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Xcode를 사용하면 AI에 대해 꽤 제한적이다. Xcode 26부터 Claude와 GPT를 연동할 수 있는 기능이 추가되었는데 썩 좋지 못하다." />
     <meta name="author" content="Hogumachu" />
     <meta name="generator" content="Ignite v0.6.0" />
-    <title>Garden – The Steady Company</title>
+    <title>AI에 대한 개인적인 생각 – The Steady Company</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/css/prism-xcode-dark.css" rel="stylesheet" data-highlight-theme="xcode-dark" />
     <link href="/css/prism-xcode-light.css" rel="stylesheet" data-highlight-theme="xcode-light" />
     <link href="/css/prism-plugins.css" rel="stylesheet" />
     <link href="/css/bootstrap-icons.min.css" rel="stylesheet" />
     <link href="/css/ignite-core.min.css" rel="stylesheet" />
-    <link href="https://thesteadycompany.github.io/garden-page" rel="canonical" />
+    <link href="https://thesteadycompany.github.io/Garden/2025-01-06-ai-for-ios-developer" rel="canonical" />
     <script>(function() {
     function getThemePreference() {
         return localStorage.getItem('custom-theme') || 'auto';
@@ -58,9 +59,11 @@
 })();
 </script>
     <meta property="og:site_name" content="Docs" />
-    <meta property="og:title" content="Garden" />
-    <meta name="twitter:title" content="Garden" />
-    <meta property="og:url" content="https://thesteadycompany.github.io/garden-page" />
+    <meta property="og:title" content="AI에 대한 개인적인 생각" />
+    <meta name="twitter:title" content="AI에 대한 개인적인 생각" />
+    <meta property="og:description" content="Xcode를 사용하면 AI에 대해 꽤 제한적이다. Xcode 26부터 Claude와 GPT를 연동할 수 있는 기능이 추가되었는데 썩 좋지 못하다." />
+    <meta name="twitter:description" content="Xcode를 사용하면 AI에 대해 꽤 제한적이다. Xcode 26부터 Claude와 GPT를 연동할 수 있는 기능이 추가되었는데 썩 좋지 못하다." />
+    <meta property="og:url" content="https://thesteadycompany.github.io/Garden/2025-01-06-ai-for-ios-developer" />
     <meta name="twitter:domain" content="thesteadycompany.github.io" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:dnt" content="on" />
@@ -76,7 +79,7 @@
             <button type="button" class="navbar-toggler btn" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div id="navbarCollapse" class="collapse navbar-collapse">
               <ul class="navbar-nav mb-2 mb-md-0 col justify-content-end">
-                <li class="nav-item"><a href="/garden-page" class="nav-link active text-nowrap" aria-current="page">Garden</a></li>
+                <li class="nav-item"><a href="/garden-page" class="nav-link text-nowrap">Garden</a></li>
                 <li class="nav-item"><a href="https://hogumachu.github.io" class="nav-link text-nowrap"><span>Personal Blog</span></a></li>
               </ul>
             </div>
@@ -85,56 +88,24 @@
       </header>
     </div>
     <div class="ig-main-content">
-      <div class="pt-5">
-        <div class="text-center vstack gap-3">
-          <p class="text-primary mb-0 align-self-center" style="font-weight: 700; font-family: 'Space Grotesk'; font-size: 1.5em">🪴 Garden</p>
-          <p class="ig-text-small text-body-secondary pb-5 mb-0 align-self-center">정재하지 않은, 짧은 글을 씁니다.</p>
-        </div>
-      </div>
-      <div class="row justify-content-start row-cols-1 row-cols-md-2">
-        <div class="col align-self-center g-3">
-          <a href="/Garden/2025-01-06-ai-for-ios-developer" class="link-plain d-inline-block" style="width: 100%; max-width: 100.0%">
-            <div class="animation-sWfAv-hover" style="background-color: rgb(128 128 128 / 3%); transform-style: preserve-3d; border-radius: 16px">
-              <div class="p-3 vstack">
-                <h5 class="text-start text-primary mb-0 align-self-start">AI에 대한 개인적인 생각</h5>
-                <p class="text-start text-body-secondary pt-2 mb-0 align-self-start">Cursor? Claude? 어떤 것이 좋을까?</p>
-                <p class="text-start ig-text-xSmall text-body-tertiary pt-1 mb-0 align-self-start">2025-01-06</p>
-                <div class="pt-2 mb-0 align-self-start hstack gap-1">
-                  <span class="mb-0 align-self-center badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill" style="font-weight: 400">iOS</span>
-                  <span class="mb-0 align-self-center badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill" style="font-weight: 400">AI</span>
-                </div>
-              </div>
-            </div></a>
-        </div>
-        <div class="col align-self-center g-3">
-          <a href="/Garden/2025-01-05-swift-dependencies" class="link-plain d-inline-block" style="width: 100%; max-width: 100.0%">
-            <div class="animation-sWfAv-hover" style="background-color: rgb(128 128 128 / 3%); transform-style: preserve-3d; border-radius: 16px">
-              <div class="p-3 vstack">
-                <h5 class="text-start text-primary mb-0 align-self-start">Swift Dependencies 잘 활용하기</h5>
-                <p class="text-start text-body-secondary pt-2 mb-0 align-self-start">추상화를 통해 빌드 시간 절약하기</p>
-                <p class="text-start ig-text-xSmall text-body-tertiary pt-1 mb-0 align-self-start">2025-01-05</p>
-                <div class="pt-2 mb-0 align-self-start hstack gap-1">
-                  <span class="mb-0 align-self-center badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill" style="font-weight: 400">iOS</span>
-                  <span class="mb-0 align-self-center badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill" style="font-weight: 400">Dependency Injection</span>
-                </div>
-              </div>
-            </div></a>
-        </div>
-        <div class="col align-self-center g-3">
-          <a href="/Garden/2025-01-04-hot-reload" class="link-plain d-inline-block" style="width: 100%; max-width: 100.0%">
-            <div class="animation-sWfAv-hover" style="background-color: rgb(128 128 128 / 3%); transform-style: preserve-3d; border-radius: 16px">
-              <div class="p-3 vstack">
-                <h5 class="text-start text-primary mb-0 align-self-start">생산성 올리는 방법 (Hot Reload)</h5>
-                <p class="text-start text-body-secondary pt-2 mb-0 align-self-start">Inject를 이용하여 생산성 올리기</p>
-                <p class="text-start ig-text-xSmall text-body-tertiary pt-1 mb-0 align-self-start">2025-01-04</p>
-                <div class="pt-2 mb-0 align-self-start hstack gap-1">
-                  <span class="mb-0 align-self-center badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill" style="font-weight: 400">iOS</span>
-                  <span class="mb-0 align-self-center badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill" style="font-weight: 400">Hot Reload</span>
-                </div>
-              </div>
-            </div></a>
-        </div>
-      </div>
+      <h1 class="text-center text-primary pt-5">AI에 대한 개인적인 생각</h1>
+      <p class="text-center text-body-secondary pb-5">Cursor? Claude? 어떤 것이 좋을까?</p>
+      <p class="m-3 p-3"></p>
+      <p>Xcode를 사용하면 AI에 대해 꽤 제한적이다.<br /> Xcode 26부터 Claude와 GPT를 연동할 수 있는 기능이 추가되었는데 썩 좋지 못하다.</p>
+      <p>GUI를 자주 사용하다보니 터미널에는 친숙하지 않아 Claude도 정감이 가지 않았다.</p>
+      <h2>선택</h2>
+      <p>일단 Cursor를 사용했다.<br /> IDE에 연동되어있고, Flutter를 개발할 때 VSCode를 사용한 경험이 있어 익숙했다.<br /> Sweetpad으로 빌드도 하고 다 할 수 있는데 이상하게 불편했다.</p>
+      <ul>
+        <li>OSLog를 사용하면 터미널에 정상적으로 출력되지 않음 (print는 정상 작동)</li>
+        <li>Xcode와 다르게 마지막 줄 개행이 되지 않아 IDE를 스위칭할 때 자꾸 변경사항이 생김</li>
+      </ul>
+      <h2>vs. Claude?</h2>
+      <p>Claude를 깊게 사용하지는 않았지만, Cursor의 장점 중 하나인 @File.swift 이런 방식으로 파일 접근 자동 완성을 지원하지 않는다.<br /> 그러나 반대로 Claude는 IDE에 대한 종속성이 없다.<br /> 어떤 작업을 할 때 Cursor는 VSCode에 종속이 되었지만, Claude는 터미널이라 확실히 더 활용도가 높은 것 같다.</p>
+      <h2>현재</h2>
+      <p>이전에는 Cursor의 자동 완성 및 테스트 코드 작성에 활용했다.</p>
+      <p>현재는 Claude로 요구사항을 알려준 후 코드를 생성하고 오류 또는 생각과 다를 때 룰을 추가하여 해결하고 있다.</p>
+      <p>완전한 바이브 코딩은 아직이지만, 점차 영역을 확장하고 있다.</p>
+      <p></p>
     </div>
     <div class="mt-5 fs-3 vstack gap-3">
       <div class="mb-0 align-self-center hstack gap-3">
