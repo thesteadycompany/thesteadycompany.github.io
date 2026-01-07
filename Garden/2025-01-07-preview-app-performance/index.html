@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="목표" />
+    <meta name="author" content="Hogumachu" />
+    <meta name="generator" content="Ignite v0.6.0" />
+    <title>Preview 앱 활용 – The Steady Company</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/prism-xcode-dark.css" rel="stylesheet" data-highlight-theme="xcode-dark" />
+    <link href="/css/prism-xcode-light.css" rel="stylesheet" data-highlight-theme="xcode-light" />
+    <link href="/css/prism-plugins.css" rel="stylesheet" />
+    <link href="/css/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="/css/ignite-core.min.css" rel="stylesheet" />
+    <link href="https://thesteadycompany.github.io/Garden/2025-01-07-preview-app-performance" rel="canonical" />
+    <script>(function() {
+    function getThemePreference() {
+        return localStorage.getItem('custom-theme') || 'auto';
+    }
+
+    function applyTheme(themeID) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const lightThemeID = document.documentElement.getAttribute('data-light-theme') || 'light';
+        const darkThemeID = document.documentElement.getAttribute('data-dark-theme') || 'dark';
+        const actualThemeID = themeID === 'auto' ? (prefersDark ? darkThemeID : lightThemeID) : themeID;
+
+        document.documentElement.setAttribute('data-bs-theme', actualThemeID);
+        document.documentElement.setAttribute('data-theme-state', themeID);
+    }
+
+    function applySyntaxTheme() {
+        const syntaxTheme = getComputedStyle(document.documentElement)
+            .getPropertyValue('--syntax-highlight-theme').trim().replace(/"/g, '');
+
+        if (!syntaxTheme) return;
+
+        document.querySelectorAll('link[data-highlight-theme]').forEach(link => {
+            link.setAttribute('disabled', 'disabled');
+        });
+
+        const themeLink = document.querySelector(`link[data-highlight-theme="${syntaxTheme}"]`);
+        if (themeLink) {
+            themeLink.removeAttribute('disabled');
+        }
+    }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        const currentTheme = getThemePreference();
+        if (currentTheme === 'auto') {
+            applyTheme('auto');
+            applySyntaxTheme();
+        }
+    });
+
+    const savedTheme = getThemePreference();
+    applyTheme(savedTheme);
+    applySyntaxTheme();
+})();
+</script>
+    <meta property="og:site_name" content="Docs" />
+    <meta property="og:title" content="Preview 앱 활용" />
+    <meta name="twitter:title" content="Preview 앱 활용" />
+    <meta property="og:description" content="목표" />
+    <meta name="twitter:description" content="목표" />
+    <meta property="og:url" content="https://thesteadycompany.github.io/Garden/2025-01-07-preview-app-performance" />
+    <meta name="twitter:domain" content="thesteadycompany.github.io" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:dnt" content="on" />
+  </head>
+  <body class="container">
+    <div class="pb-5">
+      <header>
+        <nav class="fixed-top material-ultra-thin navbar navbar-expand-md">
+          <div class="container flex-wrap flex-lg-nowrap">
+            <div class="me-2 me-md-auto">
+              <a href="/" class="d-inline-flex align-items-center navbar-brand"><span style="font-weight: 700; font-family: 'Space Grotesk'; font-size: 1.0em">THE STEADY COMPANY</span></a>
+            </div>
+            <button type="button" class="navbar-toggler btn" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+              <ul class="navbar-nav mb-2 mb-md-0 col justify-content-end">
+                <li class="nav-item"><a href="/garden-page" class="nav-link text-nowrap">Garden</a></li>
+                <li class="nav-item"><a href="https://hogumachu.github.io" class="nav-link text-nowrap"><span>Personal Blog</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+    <div class="ig-main-content">
+      <h1 class="text-center text-primary pt-5">Preview 앱 활용</h1>
+      <p class="text-center text-body-secondary pb-5">모듈 추상화를 하면 어느 정도 시간이 절약될까?</p>
+      <p class="m-3 p-3"></p>
+      <ul>
+        <li><strong>목표</strong></li>
+        <li>Preview 전용 앱 타겟을 분리하고, 의존성을 최소화했을 때 <strong>빌드 시간 단축 효과</strong>를 확인한다.</li>
+      </ul>
+      <p>🔗 <strong>프로젝트 링크</strong> <a href="https://github.com/thesteadycompany/Samples/tree/main/PreviewApp">PreviewApp GitHub Repository</a></p>
+      <hr />
+      <h2>🧱 프로젝트 구조</h2>
+      <p>현재 프로젝트는 다음과 같은 모듈 구조를 가지고 있다.</p>
+      <pre><code class="language-text">App
+AppFeature
+HomeFeature
+DatabaseClient
+DatabaseClientLive
+FeatureKit
+</code></pre>
+      <h3>🎯 타겟 구성</h3>
+      <ul>
+        <li><strong><code>App</code> 타겟</strong> → <code>DatabaseClientLive</code> 모듈을 의존</li>
+        <li><strong><code>HomePreviewApp</code> 타겟</strong> → <code>DatabaseClient</code> 모듈만 의존 (Live 구현 제외)</li>
+      </ul>
+      <p>이를 통해 Preview 전용 타겟에서는 <strong>불필요한 외부 의존성 빌드</strong>를 피하도록 구성했다.</p>
+      <hr />
+      <h2>🗄️ <code>DatabaseClientLive</code></h2>
+      <p><code>DatabaseClientLive</code> 모듈에는 외부 라이브러리인 <a href="https://github.com/pointfreeco/sqlite-data"><code>SQLiteData</code></a> 에 대한 의존성만 추가되어 있다.</p>
+      <blockquote>
+        <p><strong>실험 가설</strong> 단 하나의 외부 모듈이라도, 앱 타겟에서 함께 빌드될 경우 <strong>전체 빌드 시간에 유의미한 영향을 준다</strong>.</p>
+      </blockquote>
+      <hr />
+      <h2>🧪 테스트 방법</h2>
+      <ul>
+        <li>각 타겟을 <strong>3회씩 클린 빌드</strong></li>
+        <li>평균이 아닌 <strong>총 소요 시간 기준</strong>으로 비교</li>
+      </ul>
+      <hr />
+      <h2>📊 테스트 결과</h2>
+      <h3>⏱️ 빌드 시간 비교 (3회 기준)</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">타겟</th>
+            <th scope="col">의존 모듈 구성</th>
+            <th scope="col">3회 빌드 총 시간</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>App</code></td>
+            <td><code>DatabaseClientLive</code> + 외부 모듈</td>
+            <td><strong>18초</strong></td>
+          </tr>
+          <tr>
+            <td><code>HomePreviewApp</code></td>
+            <td><code>DatabaseClient</code> (Live 제외)</td>
+            <td><strong>11초</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>➡️ <strong>약 7초(≈39%) 빌드 시간 단축</strong></p>
+      <hr />
+      <h2>✅ 정리</h2>
+      <ul>
+        <li>Preview 전용 앱 타겟 분리는 <strong>체감 가능한 빌드 시간 개선</strong>을 가져온다.</li>
+        <li>외부 의존성을 포함한 Live 구현은 <strong>Preview와 분리</strong>하는 것이 효과적이다.</li>
+        <li>모듈 추상화 + 타겟 분리는 단순한 구조 개선을 넘어 <strong>개발 생산성</strong>에 직접적인 영향을 준다.</li>
+      </ul>
+      <blockquote>
+        <p>Preview를 자주 사용하는 UI 중심 개발 환경일수록, 이러한 구조적 분리는 <strong>누적 시간 절약 효과</strong>가 크다.</p>
+      </blockquote>
+      <p></p>
+    </div>
+    <div class="mt-5 fs-3 vstack gap-3">
+      <div class="mb-0 align-self-center hstack gap-3">
+        <a target="_blank" rel="noreferrer" href="https://github.com/thesteadycompany" class="mb-0 align-self-center link-secondary"><i class="bi-github"></i></a>
+        <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/hogumachu/" class="mb-0 align-self-center link-secondary"><i class="bi-linkedin"></i></a>
+      </div>
+      <div class="mb-0 align-self-center">
+        <div class="animation-sWfAv-hover" style="transform-style: preserve-3d">
+          <div class="hstack gap-1">
+            <div role="group" class="btn-group" aria-label="Theme Switch Buttons">
+              <button type="button" class="btn" onclick="igniteSwitchTheme('light');"><i class="bi-sun-fill" style="color: rgb(255 255 255 / 70%)"></i></button>
+              <button type="button" class="btn" onclick="igniteSwitchTheme('dark');"><i class="bi-moon-fill" style="color: rgb(0 0 0 / 70%)"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/syntax-highlighting.js"></script>
+    <script src="/js/ignite-core.js"></script>
+  </body>
+</html>
