@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="목표" />
+    <meta name="author" content="Hogumachu" />
+    <meta name="generator" content="Ignite v0.6.0" />
+    <title>FirebaseFirestore 모듈 추상화 – The Steady Company</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/prism-xcode-dark.css" rel="stylesheet" data-highlight-theme="xcode-dark" />
+    <link href="/css/prism-xcode-light.css" rel="stylesheet" data-highlight-theme="xcode-light" />
+    <link href="/css/prism-plugins.css" rel="stylesheet" />
+    <link href="/css/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="/css/ignite-core.min.css" rel="stylesheet" />
+    <link href="https://thesteadycompany.github.io/Garden/2025-01-08-firestore-interface" rel="canonical" />
+    <script>(function() {
+    function getThemePreference() {
+        return localStorage.getItem('custom-theme') || 'auto';
+    }
+
+    function applyTheme(themeID) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const lightThemeID = document.documentElement.getAttribute('data-light-theme') || 'light';
+        const darkThemeID = document.documentElement.getAttribute('data-dark-theme') || 'dark';
+        const actualThemeID = themeID === 'auto' ? (prefersDark ? darkThemeID : lightThemeID) : themeID;
+
+        document.documentElement.setAttribute('data-bs-theme', actualThemeID);
+        document.documentElement.setAttribute('data-theme-state', themeID);
+    }
+
+    function applySyntaxTheme() {
+        const syntaxTheme = getComputedStyle(document.documentElement)
+            .getPropertyValue('--syntax-highlight-theme').trim().replace(/"/g, '');
+
+        if (!syntaxTheme) return;
+
+        document.querySelectorAll('link[data-highlight-theme]').forEach(link => {
+            link.setAttribute('disabled', 'disabled');
+        });
+
+        const themeLink = document.querySelector(`link[data-highlight-theme="${syntaxTheme}"]`);
+        if (themeLink) {
+            themeLink.removeAttribute('disabled');
+        }
+    }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        const currentTheme = getThemePreference();
+        if (currentTheme === 'auto') {
+            applyTheme('auto');
+            applySyntaxTheme();
+        }
+    });
+
+    const savedTheme = getThemePreference();
+    applyTheme(savedTheme);
+    applySyntaxTheme();
+})();
+</script>
+    <meta property="og:site_name" content="Docs" />
+    <meta property="og:title" content="FirebaseFirestore 모듈 추상화" />
+    <meta name="twitter:title" content="FirebaseFirestore 모듈 추상화" />
+    <meta property="og:description" content="목표" />
+    <meta name="twitter:description" content="목표" />
+    <meta property="og:url" content="https://thesteadycompany.github.io/Garden/2025-01-08-firestore-interface" />
+    <meta name="twitter:domain" content="thesteadycompany.github.io" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:dnt" content="on" />
+  </head>
+  <body class="container">
+    <div class="pb-5">
+      <header>
+        <nav class="fixed-top material-ultra-thin navbar navbar-expand-md">
+          <div class="container flex-wrap flex-lg-nowrap">
+            <div class="me-2 me-md-auto">
+              <a href="/" class="d-inline-flex align-items-center navbar-brand"><span style="font-weight: 700; font-family: 'Space Grotesk'; font-size: 1.0em">THE STEADY COMPANY</span></a>
+            </div>
+            <button type="button" class="navbar-toggler btn" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+              <ul class="navbar-nav mb-2 mb-md-0 col justify-content-end">
+                <li class="nav-item"><a href="/garden-page" class="nav-link text-nowrap">Garden</a></li>
+                <li class="nav-item"><a href="https://hogumachu.github.io" class="nav-link text-nowrap"><span>Personal Blog</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+    <div class="ig-main-content">
+      <h1 class="text-center text-primary pt-5">FirebaseFirestore 모듈 추상화</h1>
+      <p class="text-center text-body-secondary pb-5">Timestamp 디코딩 문제와 해결 방법</p>
+      <p class="m-3 p-3"></p>
+      <ul>
+        <li><strong>목표</strong></li>
+        <li>FirebaseFirestore 모듈을 추상화하여 <strong>외부 의존성을 분리</strong>하고, 테스트와 Preview 환경에서 유연하게 사용할 수 있도록 한다.</li>
+      </ul>
+      <hr />
+      <h2>🧱 추상화 진행</h2>
+      <p>기존에 사용하던 <code>CollectionReference</code>, <code>Document</code>, <code>Query</code> 등의 코드를 최소화하기 위해 개발을 진행했다.</p>
+      <h3>✅ Protocol 기반 추상화</h3>
+      <p>Firestore에서 제공하는 기능을 모두 <strong>Protocol</strong>로 만들어 준수시켜줬다.</p>
+      <blockquote>
+        <p>이 부분은 큰 문제 없이 진행되었다.</p>
+      </blockquote>
+      <hr />
+      <h2>🗄️ Timestamp 문제 발생</h2>
+      <p>그러나 문제는 <code>Timestamp</code>에 있었다.</p>
+      <h3>🔍 원인 분석</h3>
+      <p><code>FirebaseCore</code>에서 제공하는 <code>Timestamp</code>는 내부에 <code>seconds</code> 같은 정보를 가지고 있고, <code>Decodable</code>을 준수하고 있다.</p>
+      <p>당연히 동일한 형태로 <code>Decodable</code>을 만들면 디코딩이 잘 될 것이라 생각했다.</p>
+      <blockquote>
+        <p><strong>그러나</strong> <code>Timestamp</code>는 내부에서 동작하는 <strong>별도의 디코딩 방식</strong>이 존재해서 불가능했다.</p>
+      </blockquote>
+      <hr />
+      <h2>🧪 해결 방법</h2>
+      <p><code>TimestampBuilder</code>를 별도로 만들어서 해결했다.</p>
+      <h3>📌 AS-IS (기존 방식)</h3>
+      <pre><code class="language-swift">struct SomeResponse: Decodable {
+  let value: Int
+  let timestamp: Timestamp
+}
+
+let response = try snapshot.data(as: SomeResponse.self)
+</code></pre>
+      <h3>📌 TO-BE (변경된 방식)</h3>
+      <pre><code class="language-swift">@DependencyClient
+struct TimestampBuilder: Sendable {
+  var build: @Sendable (_ value: Any?) throws -&gt; CustomTimestamp
+}
+
+struct SomeResponse: Decodable {
+  let value: Int
+}
+
+@Dependency(TimestampBuilder.self) var builder
+let timestamp = try builder(snapshot.data("timestamp"))
+let response = try snapshot.data(as: SomeResponse.self)
+</code></pre>
+      <p><code>Timestamp</code>를 사용하는 부분을 별도로 분리하고, <code>TimestampBuilder</code>는 <strong>추상화된 모듈</strong>로 관리하고 있다.</p>
+      <hr />
+      <h2>✅ 정리</h2>
+      <ul>
+        <li><code>Timestamp</code>의 내부 디코딩 로직으로 인해 단순 <code>Decodable</code> 준수만으로는 해결되지 않았다.</li>
+        <li><code>TimestampBuilder</code>를 별도 모듈로 추상화하여 <strong>의존성 주입</strong> 방식으로 해결했다.</li>
+        <li>더 좋은 방법이 있으면 나중에 전환할 예정이다.</li>
+      </ul>
+      <blockquote>
+        <p>현재는 <code>Timestamp</code>에 대한 Response가 <strong>3개 정도</strong>밖에 없어서 유지 보수에 큰 문제가 없을 것으로 판단된다.</p>
+      </blockquote>
+      <p></p>
+    </div>
+    <div class="mt-5 fs-3 vstack gap-3">
+      <div class="mb-0 align-self-center hstack gap-3">
+        <a target="_blank" rel="noreferrer" href="https://github.com/thesteadycompany" class="mb-0 align-self-center link-secondary"><i class="bi-github"></i></a>
+        <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/hogumachu/" class="mb-0 align-self-center link-secondary"><i class="bi-linkedin"></i></a>
+      </div>
+      <div class="mb-0 align-self-center">
+        <div class="animation-sWfAv-hover" style="transform-style: preserve-3d">
+          <div class="hstack gap-1">
+            <div role="group" class="btn-group" aria-label="Theme Switch Buttons">
+              <button type="button" class="btn" onclick="igniteSwitchTheme('light');"><i class="bi-sun-fill" style="color: rgb(255 255 255 / 70%)"></i></button>
+              <button type="button" class="btn" onclick="igniteSwitchTheme('dark');"><i class="bi-moon-fill" style="color: rgb(0 0 0 / 70%)"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/syntax-highlighting.js"></script>
+    <script src="/js/ignite-core.js"></script>
+  </body>
+</html>
