@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="1인 개발이나 소규모 팀에서 모듈화를 이야기하면 종종 이런 질문을 듣는다." />
+    <meta name="author" content="Hogumachu" />
+    <meta name="generator" content="Ignite v0.6.0" />
+    <title>1인 또는 소규모 환경에서도 모듈을 열심히 나눠야 하는 이유 – The Steady Company</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/prism-xcode-dark.css" rel="stylesheet" data-highlight-theme="xcode-dark" />
+    <link href="/css/prism-xcode-light.css" rel="stylesheet" data-highlight-theme="xcode-light" />
+    <link href="/css/prism-plugins.css" rel="stylesheet" />
+    <link href="/css/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="/css/ignite-core.min.css" rel="stylesheet" />
+    <link href="https://thesteadycompany.github.io/Garden/2025-01-16-why-modularization-even-small-teams" rel="canonical" />
+    <script>(function() {
+    function getThemePreference() {
+        return localStorage.getItem('custom-theme') || 'auto';
+    }
+
+    function applyTheme(themeID) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const lightThemeID = document.documentElement.getAttribute('data-light-theme') || 'light';
+        const darkThemeID = document.documentElement.getAttribute('data-dark-theme') || 'dark';
+        const actualThemeID = themeID === 'auto' ? (prefersDark ? darkThemeID : lightThemeID) : themeID;
+
+        document.documentElement.setAttribute('data-bs-theme', actualThemeID);
+        document.documentElement.setAttribute('data-theme-state', themeID);
+    }
+
+    function applySyntaxTheme() {
+        const syntaxTheme = getComputedStyle(document.documentElement)
+            .getPropertyValue('--syntax-highlight-theme').trim().replace(/"/g, '');
+
+        if (!syntaxTheme) return;
+
+        document.querySelectorAll('link[data-highlight-theme]').forEach(link => {
+            link.setAttribute('disabled', 'disabled');
+        });
+
+        const themeLink = document.querySelector(`link[data-highlight-theme="${syntaxTheme}"]`);
+        if (themeLink) {
+            themeLink.removeAttribute('disabled');
+        }
+    }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        const currentTheme = getThemePreference();
+        if (currentTheme === 'auto') {
+            applyTheme('auto');
+            applySyntaxTheme();
+        }
+    });
+
+    const savedTheme = getThemePreference();
+    applyTheme(savedTheme);
+    applySyntaxTheme();
+})();
+</script>
+    <meta property="og:site_name" content="Docs" />
+    <meta property="og:title" content="1인 또는 소규모 환경에서도 모듈을 열심히 나눠야 하는 이유" />
+    <meta name="twitter:title" content="1인 또는 소규모 환경에서도 모듈을 열심히 나눠야 하는 이유" />
+    <meta property="og:description" content="1인 개발이나 소규모 팀에서 모듈화를 이야기하면 종종 이런 질문을 듣는다." />
+    <meta name="twitter:description" content="1인 개발이나 소규모 팀에서 모듈화를 이야기하면 종종 이런 질문을 듣는다." />
+    <meta property="og:url" content="https://thesteadycompany.github.io/Garden/2025-01-16-why-modularization-even-small-teams" />
+    <meta name="twitter:domain" content="thesteadycompany.github.io" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:dnt" content="on" />
+  </head>
+  <body class="container">
+    <div class="pb-5">
+      <header>
+        <nav class="fixed-top material-ultra-thin navbar navbar-expand-md">
+          <div class="container flex-wrap flex-lg-nowrap">
+            <div class="me-2 me-md-auto">
+              <a href="/" class="d-inline-flex align-items-center navbar-brand"><span style="font-weight: 700; font-family: 'Space Grotesk'; font-size: 1.0em">THE STEADY COMPANY</span></a>
+            </div>
+            <button type="button" class="navbar-toggler btn" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+              <ul class="navbar-nav mb-2 mb-md-0 col justify-content-end">
+                <li class="nav-item"><a href="/garden-page" class="nav-link text-nowrap">Garden</a></li>
+                <li class="nav-item"><a href="https://hogumachu.github.io" class="nav-link text-nowrap"><span>Personal Blog</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+    <div class="ig-main-content">
+      <h1 class="text-center text-primary pt-5">1인 또는 소규모 환경에서도 모듈을 열심히 나눠야 하는 이유</h1>
+      <p class="text-center text-body-secondary pb-5">안전하면서 빠른 속도를 유지하는 방법</p>
+      <p class="m-3 p-3"></p>
+      <p>1인 개발이나 소규모 팀에서 모듈화를 이야기하면 종종 이런 질문을 듣는다.</p>
+      <blockquote>
+        <p>“이 정도 규모에서 굳이 이렇게까지 나눌 필요가 있을까?”</p>
+      </blockquote>
+      <p>나 역시 같은 고민을 했고, 실제로 초반에는 <strong>단일 타겟, 단일 패키지</strong>로 시작했다.<br /> 하지만 경력이 점점 쌓이고 불편한 점이 생기니 생각이 바뀌었다.</p>
+      <p>모듈화는 단순히 <em>구조를 예쁘게 나누는 작업</em>이 아니라,<br /> <strong>개발 속도와 빌드 성능, 그리고 사고의 복잡도를 줄이기 위한 도구</strong>라는 점을 체감하게 되었기 때문이다.</p>
+      <hr />
+      <h2>모듈화는 객체지향의 캡슐화와 닮아 있다</h2>
+      <p>내가 생각하는 모듈화의 핵심은 객체지향의 <strong>캡슐화</strong>와 매우 닮아 있다.</p>
+      <ul>
+        <li>필요한 것만 외부에 노출하고</li>
+        <li>불필요한 것은 내부로 숨긴다</li>
+      </ul>
+      <p>Swift로 치면,</p>
+      <ul>
+        <li>외부에 꼭 필요한 타입과 API만 <code>public</code></li>
+        <li>나머지는 모두 <code>internal</code></li>
+      </ul>
+      <p>이 원칙을 <strong>클래스 → 모듈 → 패키지</strong> 수준까지 확장하는 것이다.</p>
+      <p>즉,</p>
+      <blockquote>
+        <p><em>“모듈 수준에서도 캡슐화를 한다”</em></p>
+      </blockquote>
+      <p>라는 개념이다.</p>
+      <hr />
+      <h2>기능 단위 패키지와 패키지 수준 캡슐화</h2>
+      <p>그래서 최근에는 기능 성격에 따라 패키지를 나누고 있다.</p>
+      <p>예를 들면:</p>
+      <ul>
+        <li>Platform</li>
+        <li>UI</li>
+        <li>결제</li>
+        <li>인증</li>
+        <li>광고</li>
+      </ul>
+      <p>중요한 점은 <strong>단순히 그룹으로만 묶는 것이 아니라</strong>,<br /> 패키지 내부에서도 <strong>외부에 노출할 타겟을 명확히 정한다는 것</strong>이다.</p>
+      <p>이렇게 하면,</p>
+      <ul>
+        <li>모듈 단위 캡슐화</li>
+        <li>패키지 단위 캡슐화 (특정 타겟만 열어두는 방식으로)</li>
+      </ul>
+      <p>를 동시에 가져갈 수 있다.</p>
+      <hr />
+      <h2>Export 모듈 패턴</h2>
+      <p>최근에는 <code>export</code> 전용 모듈을 두는 패턴을 적극적으로 사용하고 있다.<br /> (Flutter에서는 꽤 익숙한 방식이다.)</p>
+      <h3>개발 환경과 프로덕션 환경 분리</h3>
+      <p>개발 환경에서는:</p>
+      <ul>
+        <li>구현체를 알 필요가 없고</li>
+        <li>인터페이스만 알면 된다</li>
+      </ul>
+      <p>반대로 프로덕션 환경에서는:</p>
+      <ul>
+        <li>실제 구현체에 대한 의존성이 필요하다</li>
+      </ul>
+      <p>이를 위해 다음과 같은 구조를 사용한다.</p>
+      <h3>AppDev (개발 환경)</h3>
+      <pre><code class="language-swift">@_exported import DatabaseClient
+@_exported import NetworkClient
+</code></pre>
+      <h3>AppLive (프로덕션 환경)</h3>
+      <pre><code class="language-swift">@_exported import DatabaseClientLive
+@_exported import NetworkClientLive
+</code></pre>
+      <p>이렇게 하면,</p>
+      <ul>
+        <li>외부에서는 <code>AppDev</code> 또는 <code>AppLive</code>만 import 하면 되고</li>
+        <li>내부 의존성 구조를 일일이 신경 쓸 필요가 없다</li>
+      </ul>
+      <p>모듈 간 의존성 그래프에서 <strong>헷갈릴 일이 현저히 줄어든다.</strong><br /></p>
+      <hr />
+      <h2>1인 또는 소규모에서도 모듈화를 해야 하는 진짜 이유</h2>
+      <p>여기까지 보면 이렇게 느낄 수도 있다.</p>
+      <blockquote>
+        <p>“그래도 결국 복잡도 줄이기 아닌가?”</p>
+      </blockquote>
+      <p>하지만 내가 느낀 <strong>가장 큰 이유는 따로 있다.</strong></p>
+      <h3>프로덕션 프로젝트는 결국 무거워진다</h3>
+      <p>아무리 작은 앱이라도, 프로덕션 환경에서는 다음을 피할 수 없다.</p>
+      <ul>
+        <li>Firebase (Analytics, A/B Test)</li>
+        <li>Google / Kakao Login</li>
+        <li>광고 SDK (AdMob + 미디에이션)</li>
+        <li>각종 서드파티 SDK</li>
+      </ul>
+      <p>결국 <strong>빌드 속도는 느려질 수밖에 없다.</strong></p>
+      <p>프로젝트가 작아도,</p>
+      <ul>
+        <li>5초 → 1초 빌드가 된다면</li>
+        <li>체감 생산성은 완전히 달라진다</li>
+      </ul>
+      <hr />
+      <h2>빠른 개발 속도에 대한 집착</h2>
+      <p>요즘 가장 큰 관심사는 <strong>압도적으로 빠른 개발 속도</strong>다.</p>
+      <ul>
+        <li>Cursor에서 Swift 빌드를 돌리면
+          <ul>
+            <li>Xcode 대비 체감상 느린 느낌이 들 때가 있다</li>
+          </ul></li>
+        <li>그래서:
+          <ul>
+            <li>핫리로드</li>
+            <li>필요할 때만 빌드</li>
+          </ul></li>
+      </ul>
+      <p>이 조합을 적극적으로 사용하고 있다.</p>
+      <p>Cursor에 룰셋만 잘 정의해두면,</p>
+      <ul>
+        <li>UI는 거의 “딸깍” 수준</li>
+        <li>Mock 데이터 생성</li>
+        <li>테스트 코드 작성</li>
+      </ul>
+      <p>이 생산성이 정말 말이 안 된다.</p>
+      <p>복잡한 비즈니스 로직은 아직 손으로 작성하는 게 편한 부분도 있지만,<br /> 자동완성과 보조 역할만으로도 충분히 값어치를 한다고 느낀다.</p>
+      <hr />
+      <h2>정리</h2>
+      <p>결국 내가 생각하는 <strong>잘 만든 모듈화의 장점</strong>은 다음과 같다.</p>
+      <ul>
+        <li>계층 구조가 명확해진다</li>
+        <li>의존성 관리가 쉬워진다</li>
+        <li>모듈 단위 빌드가 가능해진다</li>
+        <li>데모 / 샘플 앱을 만들기 쉬워진다</li>
+        <li>빌드 속도가 빨라진다</li>
+        <li>AI + Mock 기반 개발 생산성이 극대화된다</li>
+      </ul>
+      <p>특히 데모 앱 환경에서는,<br /> AI가 Mock을 너무 잘 만들어주기 때문에<br /> 개발 속도가 눈에 띄게 빨라진다.</p>
+      <p>1인 개발이든, 소규모 팀이든<br /> <strong>모듈화는 ‘미래를 대비하는 과한 설계’가 아니라<br /> 현재 생산성을 높이기 위한 선택</strong>이라고 생각한다.</p>
+      <p></p>
+    </div>
+    <div class="mt-5 fs-3 vstack gap-3">
+      <div class="mb-0 align-self-center hstack gap-3">
+        <a target="_blank" rel="noreferrer" href="https://github.com/thesteadycompany" class="mb-0 align-self-center link-secondary"><i class="bi-github"></i></a>
+        <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/hogumachu/" class="mb-0 align-self-center link-secondary"><i class="bi-linkedin"></i></a>
+      </div>
+      <div class="mb-0 align-self-center">
+        <div class="animation-sWfAv-hover" style="transform-style: preserve-3d">
+          <div class="hstack gap-1">
+            <div role="group" class="btn-group" aria-label="Theme Switch Buttons">
+              <button type="button" class="btn" onclick="igniteSwitchTheme('light');"><i class="bi-sun-fill" style="color: rgb(255 255 255 / 70%)"></i></button>
+              <button type="button" class="btn" onclick="igniteSwitchTheme('dark');"><i class="bi-moon-fill" style="color: rgb(0 0 0 / 70%)"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/syntax-highlighting.js"></script>
+    <script src="/js/ignite-core.js"></script>
+  </body>
+</html>
