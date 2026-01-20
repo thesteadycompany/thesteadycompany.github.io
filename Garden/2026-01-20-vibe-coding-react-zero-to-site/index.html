@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="리액트를 한 줄도 몰랐지만, 그냥 “마크다운으로 블로그 만들고 싶다”는 욕심 하나로 시작했다. 도구는 Oh My OpenCode, 모델은 GPT. 결과는 https://thevibecompany.github.io 페이지이다." />
+    <meta name="author" content="Hogumachu" />
+    <meta name="generator" content="Ignite v0.6.0" />
+    <title>바이브 코딩으로 블로그 사이트 만들기 – The Steady Company</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/prism-xcode-dark.css" rel="stylesheet" data-highlight-theme="xcode-dark" />
+    <link href="/css/prism-xcode-light.css" rel="stylesheet" data-highlight-theme="xcode-light" />
+    <link href="/css/prism-plugins.css" rel="stylesheet" />
+    <link href="/css/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="/css/ignite-core.min.css" rel="stylesheet" />
+    <link href="https://thesteadycompany.github.io/Garden/2026-01-20-vibe-coding-react-zero-to-site" rel="canonical" />
+    <script>(function() {
+    function getThemePreference() {
+        return localStorage.getItem('custom-theme') || 'auto';
+    }
+
+    function applyTheme(themeID) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const lightThemeID = document.documentElement.getAttribute('data-light-theme') || 'light';
+        const darkThemeID = document.documentElement.getAttribute('data-dark-theme') || 'dark';
+        const actualThemeID = themeID === 'auto' ? (prefersDark ? darkThemeID : lightThemeID) : themeID;
+
+        document.documentElement.setAttribute('data-bs-theme', actualThemeID);
+        document.documentElement.setAttribute('data-theme-state', themeID);
+    }
+
+    function applySyntaxTheme() {
+        const syntaxTheme = getComputedStyle(document.documentElement)
+            .getPropertyValue('--syntax-highlight-theme').trim().replace(/"/g, '');
+
+        if (!syntaxTheme) return;
+
+        document.querySelectorAll('link[data-highlight-theme]').forEach(link => {
+            link.setAttribute('disabled', 'disabled');
+        });
+
+        const themeLink = document.querySelector(`link[data-highlight-theme="${syntaxTheme}"]`);
+        if (themeLink) {
+            themeLink.removeAttribute('disabled');
+        }
+    }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        const currentTheme = getThemePreference();
+        if (currentTheme === 'auto') {
+            applyTheme('auto');
+            applySyntaxTheme();
+        }
+    });
+
+    const savedTheme = getThemePreference();
+    applyTheme(savedTheme);
+    applySyntaxTheme();
+})();
+</script>
+    <meta property="og:site_name" content="Docs" />
+    <meta property="og:title" content="바이브 코딩으로 블로그 사이트 만들기" />
+    <meta name="twitter:title" content="바이브 코딩으로 블로그 사이트 만들기" />
+    <meta property="og:description" content="리액트를 한 줄도 몰랐지만, 그냥 “마크다운으로 블로그 만들고 싶다”는 욕심 하나로 시작했다. 도구는 Oh My OpenCode, 모델은 GPT. 결과는 https://thevibecompany.github.io 페이지이다." />
+    <meta name="twitter:description" content="리액트를 한 줄도 몰랐지만, 그냥 “마크다운으로 블로그 만들고 싶다”는 욕심 하나로 시작했다. 도구는 Oh My OpenCode, 모델은 GPT. 결과는 https://thevibecompany.github.io 페이지이다." />
+    <meta property="og:url" content="https://thesteadycompany.github.io/Garden/2026-01-20-vibe-coding-react-zero-to-site" />
+    <meta name="twitter:domain" content="thesteadycompany.github.io" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:dnt" content="on" />
+  </head>
+  <body class="container">
+    <div class="pb-5">
+      <header>
+        <nav class="fixed-top material-ultra-thin navbar navbar-expand-md">
+          <div class="container flex-wrap flex-lg-nowrap">
+            <div class="me-2 me-md-auto">
+              <a href="/" class="d-inline-flex align-items-center navbar-brand"><span style="font-weight: 700; font-family: 'Space Grotesk'; font-size: 1.0em">THE STEADY COMPANY</span></a>
+            </div>
+            <button type="button" class="navbar-toggler btn" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+              <ul class="navbar-nav mb-2 mb-md-0 col justify-content-end">
+                <li class="nav-item"><a href="/garden-page" class="nav-link text-nowrap">Garden</a></li>
+                <li class="nav-item"><a href="https://hogumachu.github.io" class="nav-link text-nowrap"><span>Personal Blog</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+    <div class="ig-main-content">
+      <h1 class="text-center text-primary pt-5">바이브 코딩으로 블로그 사이트 만들기</h1>
+      <p class="text-center text-body-secondary pb-5">Oh My OpenCode로 2시간 만에 thevibecompany.github.io 찍어내기</p>
+      <p class="m-3 p-3"></p>
+      <p>리액트를 한 줄도 몰랐지만,<br /> 그냥 “마크다운으로 블로그 만들고 싶다”는 욕심 하나로 시작했다.<br /> 도구는 <strong>Oh My OpenCode</strong>, 모델은 <strong>GPT</strong>.<br /> 결과는 <code>https://thevibecompany.github.io</code> 페이지이다.</p>
+      <hr />
+      <h2>세팅: 에이전트 한 줄로 끝</h2>
+      <p>23줄짜리 <code>oh-my-opencode.json</code>만 정의했다.<br /></p>
+      <pre><code class="language-json">{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "Sisyphus": { "model": "openai/gpt-5.1-codex-max" },
+    "librarian": { "model": "openai/gpt-5.2-codex" },
+    "explore": { "model": "openai/gpt-5.2-codex" },
+    "frontend-ui-ux-engineer": { "model": "openai/gpt-5.2-codex" },
+    "document-writer": { "model": "openai/gpt-5.2-codex-mini" },
+    "multimodal-looker": { "model": "openai/gpt-5.2-codex-mini" }
+  }
+}
+</code></pre>
+      <ul>
+        <li>프로젝트 안 <code>.opencode/oh-my-opencode.json</code>, 홈 <code>~/.config/opencode/oh-my-opencode.json</code> 둘 다 읽는 구조라 경로만 맞추면 끝.</li>
+        <li>별도 SKILL 설정 없이도 기본 팀 구성이 바로 굴러간다.</li>
+      </ul>
+      <hr />
+      <h2>1시간은 날렸다: 애매한 지시의 대가</h2>
+      <p>“마크다운 블로그 만들고 싶다” 정도로 말했더니 흐릿하게 돌다 멈췄다.<br /> <strong>명확한 요청이 없으면 에이전트도 헤맨다</strong>는 걸 체감했다.</p>
+      <hr />
+      <h2>돌파구: 다른 사이트 HTML 뜯어보기</h2>
+      <p>다른 사이트의 HTML과 클래스 이름을 콕 집어주니 즉시 개선됐다.</p>
+      <ul>
+        <li>“이 섹션 레이아웃을 그대로 써라”</li>
+        <li>“버튼 클래스 <code>btn-primary</code> 톤만 살려라”</li>
+        <li>“헤더는 sticky, 푸터는 단순하게”</li>
+      </ul>
+      <p>이렇게 <strong>구체적인 구조 + 용도</strong>를 주면 에이전트가 바로 반응한다.</p>
+      <hr />
+      <h2>2시간 만에 완성: 소스 코드는 손 안 댔다</h2>
+      <ul>
+        <li>마크다운 작성 → GitHub Pages 배포 → 기본 스타일링까지 자동.</li>
+        <li>React/Vite/Hugo 파이프라인도 알아서 맞춰줌 (공식 문서에서도 1.5h 사례가 있던 그 구조).</li>
+        <li>나는 프롬프트만 던졌고, 로컬 코드는 거의 손대지 않았다.</li>
+      </ul>
+      <hr />
+      <h2>배운 점</h2>
+      <ul>
+        <li><strong>도메인 지식은 여전히 필요</strong>: 리액트 문법을 몰라도 되지만, 원하는 레이아웃·톤을 설명할 언어는 필요.</li>
+        <li><strong>구조를 먼저, 구현은 에이전트에</strong>: 섹션 구획, 클래스 역할을 먼저 정의하면 수정 비용이 급감.</li>
+        <li><strong>병렬 작업 활용</strong>: librarian/explore를 병렬로 돌리면 참고 예시와 코드 위치를 빠르게 얻을 수 있다.</li>
+      </ul>
+      <hr />
+      <h2>다음엔 이렇게 할 것</h2>
+      <ol>
+        <li>시작 프롬프트에 <strong>사이트 맵</strong>과 <strong>섹션별 톤</strong>을 바로 넣는다.</li>
+        <li>예시 HTML/CSS 조각을 함께 주어 “이 느낌”을 초반에 못 박는다.</li>
+        <li>프론트엔드 용어 몇 개만 미리 정리해둔다 (hero, CTA, grid, gutter 등).</li>
+      </ol>
+      <hr />
+      <h2>마치며</h2>
+      <p>프론트엔드 지식이 없어도 <strong>명확한 디렉션</strong>만 있다면 결과물을 뽑아낼 수 있다는 걸 확인했다.<br /> 하지만 프로덕션급 퀄리티를 내려면, 최소한의 언어와 맥락을 아는 사람이 <strong>품질을 통제</strong>해야 한다.<br /> AI는 손이고, 방향은 사람이 쥔다. 이번엔 그 감각을 조금 더 얻어갔다.</p>
+      <p></p>
+    </div>
+    <div class="mt-5 fs-3 vstack gap-3">
+      <div class="mb-0 align-self-center hstack gap-3">
+        <a target="_blank" rel="noreferrer" href="https://github.com/thesteadycompany" class="mb-0 align-self-center link-secondary"><i class="bi-github"></i></a>
+        <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/hogumachu/" class="mb-0 align-self-center link-secondary"><i class="bi-linkedin"></i></a>
+      </div>
+      <div class="mb-0 align-self-center">
+        <div class="animation-sWfAv-hover" style="transform-style: preserve-3d">
+          <div class="hstack gap-1">
+            <div role="group" class="btn-group" aria-label="Theme Switch Buttons">
+              <button type="button" class="btn" onclick="igniteSwitchTheme('light');"><i class="bi-sun-fill" style="color: rgb(255 255 255 / 70%)"></i></button>
+              <button type="button" class="btn" onclick="igniteSwitchTheme('dark');"><i class="bi-moon-fill" style="color: rgb(0 0 0 / 70%)"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/syntax-highlighting.js"></script>
+    <script src="/js/ignite-core.js"></script>
+  </body>
+</html>
